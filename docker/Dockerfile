@@ -4,7 +4,7 @@
 
 # auto build from my github project: https://github.com/maxidea-com/ss-panel
 
-FROM ubuntu:14.04 
+FROM ubuntu:14.04
 
 # make sure the package repository is up to date
 RUN apt-get -y update && apt-get install -y redis-server
@@ -31,6 +31,7 @@ ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 ADD 3line.sh /opt/3line.sh
 ADD mysql-init.sh /opt/mysql-init.sh
 ADD .env /opt/ss-panel/.env
+
 ADD default /etc/nginx/sites-available/default
 
 RUN /bin/bash /opt/3line.sh
@@ -41,8 +42,7 @@ RUN apt-get clean && apt-get autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /va
 
 EXPOSE 80 1025 1026 1027 1028
 
-
-CMD ["/usr/bin/supervisord"] 
+CMD ["/usr/bin/supervisord"]
 
 
 # contact
